@@ -25,7 +25,7 @@ public class AdminHouseController {
 
 		model.addAttribute("houses", houses);
 
-		return "admin/house/index";
+		return "admin/houses/index";
 	}
 
 }
