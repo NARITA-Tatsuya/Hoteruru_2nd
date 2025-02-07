@@ -33,15 +33,18 @@
 			<div class="container pt-4 pb-5 samuraitravel-container">
 				<div class="row justify-content-center">
 					<div class="col-xxl-9 col-xl-10 col-lg-11">
-						
+
 						<h1 class="mb-4 text-center">民宿一覧</h1>
-						
-						<div class="d-flex justify-content-end">
-							<div class="d-flex justify-content-between align-items-end flex-wrap">
-								<form method="get" th:action=""
-							</div>
-						</div>
-						<div class="d-flex justify-content-end">
+
+
+						<div class="d-flex justify-content-between align-items-end flex-wrap">
+							<form method="get" th:action="@{/admin/houses}" class="mb-3">
+								<div class="input-group">
+									<input type="text" class="form-control" name="keyword" th:value="${keyword}"
+										placeholder="民宿名">
+									<button type="submit" class="btn text-white shadow-sm samuraitravel-btn">検索</button>
+								</div>
+							</form>
 							<a href="#" class="btn text-white shadow-sm mb-3 samuraitravel-btn">登録</a>
 						</div>
 						<table class="table">
