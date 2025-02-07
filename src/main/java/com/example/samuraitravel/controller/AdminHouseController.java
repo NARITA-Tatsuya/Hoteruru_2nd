@@ -42,9 +42,8 @@ public class AdminHouseController {
 	public String show(@PathVariable(name="id") Integer id, Model model) {
 		House house = houseRepository.getReferenceById(id);
 		
-		model.addAttribute("house, house");
+		model.addAttribute("house", house);
 		
 		return "admin/houses/show";
 	}
 }
-;
