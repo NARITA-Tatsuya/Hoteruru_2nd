@@ -26,13 +26,13 @@ public class UserService {
 	public User create(SignupForm form) {
 		User user = new User();
 		Role role = roleRepository.findByName("ROLE_GENERAL");
-		user.setName(signupForm.getName());
-		user.setFurigana(signupForm.getFurigana());
-		user.setPostalCode(signupForm.getPostalCode());
-		user.setAddress(signupForm.getAddress());
-		user.setPhoneNumber(signupForm.getPhoneNumber());
-		user.setEmail(signupForm.getEmail());
-		user.setPassword(passwordEncoder.encode(signupForm.getPassword()));
+		user.setName(form.getName());
+		user.setFurigana(form.getFurigana());
+		user.setPostalCode(form.getPostalCode());
+		user.setAddress(form.getAddress());
+		user.setPhoneNumber(form.getPhoneNumber());
+		user.setEmail(form.getEmail());
+		user.setPassword(passwordEncoder.encode(form.getPassword()));
 		user.setRole(role);
 		user.setEnabled(true);
 		return userRepository.save(user);
