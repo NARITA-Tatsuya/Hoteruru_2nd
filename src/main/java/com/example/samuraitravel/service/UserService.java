@@ -23,18 +23,19 @@ public class UserService {
 	}
 
 	@Transactional
-	public User create(SignupForm form) {
+	public User create(SignupForm signupForm) {
 		User user = new User();
 		Role role = roleRepository.findByName("ROLE_GENERAL");
-		user.setName(form.getName());
-		user.setFurigana(form.getFurigana());
-		user.setPostalCode(form.getPostalCode());
-		user.setAddress(form.getAddress());
-		user.setPhoneNumber(form.getPhoneNumber());
-		user.setEmail(form.getEmail());
-		user.setPassword(passwordEncoder.encode(form.getPassword()));
+		user.setName(signupForm.getName());
+		user.setFurigana(signupForm.getFurigana());
+		user.setPostalCode(signupForm.getPostalCode());
+		user.setAddress(signupForm.getAddress());
+		user.setPhoneNumber(signupForm.getPhoneNumber());
+		user.setEmail(signupForm.getEmail());
+		user.setPassword(passwordEncoder.encode(signupForm.getPassword()));
 		user.setRole(role);
 		user.setEnabled(true);
+		user.setEnabled(false);
 		return userRepository.save(user);
 	}
 
@@ -47,6 +48,13 @@ public class UserService {
 	//パスワードとパスワード（確認用）の入力値が一致するかどうかをチェックする
 	public boolean isSamePassword(String password, String passwordConfirmation) {
 		return password.equals(passwordConfirmation);
+	}
+
+	//ユーザーを有効にする
+	@Transactional
+	public void enableUser(User user) {
+		user.setEnabled(true);
+		userRepository.save(user);
 	}
 
 }
