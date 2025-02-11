@@ -64,6 +64,8 @@ public class AuthController {
 			return "auth/signup";
 		}
 
+		userService.create(signupForm);
+		redirectAttributes.addFlashAttribute("successMessage", "会員登録が完了しました。");
 		User createdUser = userService.create(signupForm);
 		String requestUrl = new String(httpServletRequest.getRequestURL());
 		signupEventPublisher.publishSignupEvent(createdUser, requestUrl);
@@ -75,6 +77,7 @@ public class AuthController {
 	@GetMapping("/signup/verify")
 	public String verify(@RequestParam(name = "token") String token, Model model) {
 		VerificationToken verificationToken = verificationTokenService.getVerificationToken(token);
+
 		if (verificationToken != null) {
 			User user = verificationToken.getUser();
 			userService.enableUser(user);
