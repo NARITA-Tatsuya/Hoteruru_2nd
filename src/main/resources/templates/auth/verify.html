@@ -11,7 +11,6 @@
 	<div class="samuraitravel-wrapper">
 		<!-- ヘッダー -->
 		<div th:replace="~{fragment :: header}"></div>
-
 		<main>
 			<div class="container pt-4 pb-5 samuraitravel-container">
 				<div class="row justify-content-center">
@@ -22,16 +21,13 @@
 						<div th:if="${errorMessage}" class="alert alert-danger">
 							<span th:text="${errorMessage}"></span>
 						</div>
-
 					</div>
 				</div>
 			</div>
 		</main>
-
 		<!-- フッター -->
 		<div th:replace="~{fragment :: footer}"></div>
 	</div>
-
 	<div th:replace="~{fragment :: scripts}"></div>
 </body>
 

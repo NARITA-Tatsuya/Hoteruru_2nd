@@ -23,7 +23,7 @@ public class VerificationTokenService {
 		verificationTokenRepository.save(verificationToken);
 	}
 
-	//トークンの文字列で検索した結果を返す
+	// トークンの文字列で検索した結果を返す
 	public VerificationToken getVerificationToken(String token) {
 		return verificationTokenRepository.findByToken(token);
 	}

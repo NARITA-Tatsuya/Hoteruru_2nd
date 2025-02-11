@@ -11,7 +11,6 @@
 	<div class="samuraitravel-wrapper">
 		<!-- ヘッダー -->
 		<div th:replace="~{fragment :: header}"></div>
-
 		<main>
 			<div class="container pt-4 pb-5 samuraitravel-container">
 				<div class="row justify-content-center">
@@ -31,7 +30,7 @@
 									<div th:if="${#fields.hasErrors('name')}" class="text-danger small mb-2"
 										th:errors="*{name}"></div>
 									<input type="text" class="form-control" th:field="*{name}" autocomplete="name"
-										autofocus placeholder="SAMURAI 太郎">
+										autofocus placeholder="samurai 太郎">
 								</div>
 							</div>
 							<div class="form-group row mb-3">
@@ -47,10 +46,9 @@
 									<div th:if="${#fields.hasErrors('furigana')}" class="text-danger small mb-2"
 										th:errors="*{furigana}"></div>
 									<input type="text" class="form-control" th:field="*{furigana}"
-										placeholder="サムライ タロウ">
+										placeholder="モート タロウ">
 								</div>
 							</div>
-
 							<div class="form-group row mb-3">
 								<div class="col-md-5">
 									<label for="postalCode" class="col-form-label text-md-left fw-bold">
@@ -105,7 +103,6 @@
 										<div class="d-flex align-items-center">
 											<span class="me-1">メールアドレス</span>
 											<span class="badge bg-danger">必須</span>
-
 										</div>
 									</label>
 								</div>
@@ -160,7 +157,6 @@
 				</div>
 			</div>
 		</main>
-
 		<!-- フッター -->
 		<div th:replace="~{fragment :: footer}"></div>
 	</div>

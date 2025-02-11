@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.samuraitravel.entity.User;
 
+
 public class UserDetailsImpl implements UserDetails {
 	private final User user;
 	private final Collection<GrantedAuthority> authorities;
@@ -61,5 +62,4 @@ public class UserDetailsImpl implements UserDetails {
 	public boolean isEnabled() {
 		return user.getEnabled();
 	}
-
 }

@@ -16,5 +16,15 @@ public class SignupEventPublisher {
 	public void publishSignupEvent(User user, String requestUrl) {
 		applicationEventPublisher.publishEvent(new SignupEvent(this, user, requestUrl));
 	}
+}
 
+public class Main{
+	public static int add(int x, int y) {
+		int ans = x + y;
+		return ans;
+	}
+	public static void main(String[] args) {
+		int ans = add(100, 10);
+		System.out.println("100 + 10 =" + ans);
+	}
 }

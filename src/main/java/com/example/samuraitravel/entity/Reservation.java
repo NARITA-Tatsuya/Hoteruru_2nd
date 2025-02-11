@@ -1,6 +1,7 @@
 package com.example.samuraitravel.entity;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,32 +15,27 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "users")
+@Table(name = "reservations")
 @Data
-public class User {
+public class Reservation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
-	@Column(name = "name")
-	private String name;
-	@Column(name = "furigana")
-	private String furigana;
-	@Column(name = "postal_code")
-	private String postalCode;
-	@Column(name = "address")
-	private String address;
-	@Column(name = "phone_number")
-	private String phoneNumber;
-	@Column(name = "email")
-	private String email;
-	@Column(name = "password")
-	private String password;
 	@ManyToOne
-	@JoinColumn(name = "role_id")
-	private Role role;
-	@Column(name = "enabled")
-	private Boolean enabled;
+	@JoinColumn(name = "house_id")
+	private House house;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	@Column(name = "checkin_date")
+	private LocalDate checkinDate;
+	@Column(name = "checkout_date")
+	private LocalDate checkoutDate;
+	@Column(name = "number_of_people")
+	private Integer numberOfPeople;
+	@Column(name = "amount")
+	private Integer amount;
 	@Column(name = "created_at", insertable = false, updatable = false)
 	private Timestamp createdAt;
 	@Column(name = "updated_at", insertable = false, updatable = false)

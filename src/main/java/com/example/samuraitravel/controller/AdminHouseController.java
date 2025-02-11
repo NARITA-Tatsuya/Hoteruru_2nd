@@ -38,13 +38,16 @@ public class AdminHouseController {
 			@PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.ASC) Pageable pageable,
 			@RequestParam(name = "keyword", required = false) String keyword) {
 		Page<House> housePage;
+
 		if (keyword != null && !keyword.isEmpty()) {
 			housePage = houseRepository.findByNameLike("%" + keyword + "%", pageable);
 		} else {
 			housePage = houseRepository.findAll(pageable);
 		}
+
 		model.addAttribute("housePage", housePage);
 		model.addAttribute("keyword", keyword);
+
 		return "admin/houses/index";
 	}
 
@@ -64,14 +67,15 @@ public class AdminHouseController {
 	}
 
 	@PostMapping("/create")
-	public String create(@ModelAttribute @Validated HouseRegisterForm houseRegisterForm, BindingResult bindingResult,
+	public String create(@ModelAttribute @Validated HouseRegisterForm houseregisterForm, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
 		if (bindingResult.hasErrors()) {
 			return "admin/houses/register";
 		}
 
-		houseService.create(houseRegisterForm);
-		redirectAttributes.addFlashAttribute("successMessage", "民宿を登録しました。");
+		houseService.create(houseregisterForm);
+		redirectAttributes.addFlashAttribute("successMessage", "民宿を登録しました");
+
 		return "redirect:/admin/houses";
 	}
 
@@ -82,8 +86,10 @@ public class AdminHouseController {
 		HouseEditForm houseEditForm = new HouseEditForm(house.getId(), house.getName(), null, house.getDescription(),
 				house.getPrice(), house.getCapacity(), house.getPostalCode(), house.getAddress(),
 				house.getPhoneNumber());
+
 		model.addAttribute("imageName", imageName);
 		model.addAttribute("houseEditForm", houseEditForm);
+
 		return "admin/houses/edit";
 	}
 
@@ -93,17 +99,17 @@ public class AdminHouseController {
 		if (bindingResult.hasErrors()) {
 			return "admin/houses/edit";
 		}
-
 		houseService.update(houseEditForm);
 		redirectAttributes.addFlashAttribute("successMessage", "民宿情報を編集しました。");
 		return "redirect:/admin/houses";
 	}
-	
+
 	@PostMapping("/{id}/delete")
 	public String delete(@PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes) {
 		houseRepository.deleteById(id);
-		redirectAttributes.addFlashAttribute("successMessage", "民宿を削除しました。");
+
+		redirectAttributes.addFlashAttribute("successMessage", "民宿を削除しました");
+
 		return "redirect:/admin/houses";
 	}
-
 }

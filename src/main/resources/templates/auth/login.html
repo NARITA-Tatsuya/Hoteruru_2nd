@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+</html>
 
 <head>
 	<div th:replace="~{fragment :: meta}"></div>
-
 	<div th:replace="~{fragment :: styles}"></div>
-
 	<title>ログイン</title>
 </head>
 
@@ -13,7 +14,6 @@
 	<div class="samuraitravel-wrapper">
 		<!-- ヘッダー -->
 		<div th:replace="~{fragment :: header}"></div>
-
 		<main>
 			<div class="container pt-4 pb-5 samuraitravel-container">
 				<div class="row justify-content-center">
@@ -31,27 +31,24 @@
 								<input type="password" class="form-control" name="password" autocomplete="new-password"
 									placeholder="パスワード">
 							</div>
-							<div class="form-group	d-flex justify-content-center my-4">
+							<div class="form-group d-flex justify-content-center my-4">
 								<button type="submit"
 									class="btn text-white shadow-sm w-100 samuraitravel-btn">ログイン</button>
 							</div>
 						</form>
-
 						<div class="text-center">
 							<a href="#">
-								<a th:href="@{/signup}">
-									会員登録
-								</a>
+							<a th:href="@{/signup}">
+								会員登録
+							</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</main>
-
 		<!-- フッター -->
 		<div th:replace="~{fragment :: footer}"></div>
 	</div>
-
 	<div th:replace="~{fragment :: scripts}"></div>
 </body>
 

@@ -47,25 +47,19 @@ public class AuthController {
 	@PostMapping("/signup")
 	public String signup(@ModelAttribute @Validated SignupForm signupForm, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes, HttpServletRequest httpServletRequest) {
-		//メールアドレスが登録済みであれば、BindinfResultオブジェクトにエラー内容を追加する
+		// メールアドレスが登録済みであれば、BindingResultオブジェクトにエラー内容を追加する
 		if (userService.isEmailRegistered(signupForm.getEmail())) {
-			FieldError filedError = new FieldError(bindingResult.getObjectName(), "email", "すでに登録済みのメールアドレスです。");
-			bindingResult.addError(filedError);
+			FieldError fieldError = new FieldError(bindingResult.getObjectName(), "email", "すでに登録済みのメールアドレスです。");
+			bindingResult.addError(fieldError);
 		}
-
-		//パスワードとパスワード（確認用）の入力値が一致しなければ、BindingResultオブジェクトにエラー内容を追加する
+		// パスワードとパスワード（確認用）の入力値が一致しなければ、BindingResultオブジェクトにエラー内容を追加する
 		if (!userService.isSamePassword(signupForm.getPassword(), signupForm.getPasswordConfirmation())) {
-			FieldError filedError = new FieldError(bindingResult.getObjectName(), "password",
-					"パスワードが一致しません。");
-			bindingResult.addError(filedError);
+			FieldError fieldError = new FieldError(bindingResult.getObjectName(), "password", "パスワードが一致しません。");
+			bindingResult.addError(fieldError);
 		}
-
 		if (bindingResult.hasErrors()) {
 			return "auth/signup";
 		}
-
-		userService.create(signupForm);
-		redirectAttributes.addFlashAttribute("successMessage", "会員登録が完了しました。");
 		User createdUser = userService.create(signupForm);
 		String requestUrl = new String(httpServletRequest.getRequestURL());
 		signupEventPublisher.publishSignupEvent(createdUser, requestUrl);
@@ -77,7 +71,6 @@ public class AuthController {
 	@GetMapping("/signup/verify")
 	public String verify(@RequestParam(name = "token") String token, Model model) {
 		VerificationToken verificationToken = verificationTokenService.getVerificationToken(token);
-
 		if (verificationToken != null) {
 			User user = verificationToken.getUser();
 			userService.enableUser(user);
